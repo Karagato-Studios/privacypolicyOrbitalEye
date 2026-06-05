@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy & Terms — Karagato Studios</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',-apple-system,sans-serif;
+  background:#03050a;
+  color:#c8d0e0;
+  line-height:1.7;
+  overflow-x:hidden;
+}
+/* Stars background */
+#stars-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+/* Header */
+header{
+  position:relative;z-index:1;
+  text-align:center;padding:80px 20px 60px;
+  background:linear-gradient(180deg,rgba(0,40,80,0.4) 0%,transparent 100%);
+  border-bottom:1px solid rgba(0,212,255,0.08);
+}
+header h1{
+  font-size:clamp(28px,5vw,52px);font-weight:700;
+  background:linear-gradient(135deg,#00d4ff,#7b61ff);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  letter-spacing:-0.02em;margin-bottom:12px;
+}
+header p{font-size:14px;color:#64748b;letter-spacing:2px;text-transform:uppercase;font-weight:500}
+header .badge{
+  display:inline-block;margin-top:16px;
+  background:rgba(0,212,255,0.1);border:1px solid rgba(0,212,255,0.2);
+  padding:6px 18px;border-radius:20px;
+  font-size:12px;color:#00d4ff;letter-spacing:1px;font-weight:500;
+}
+/* Nav */
+nav{
+  position:sticky;top:0;z-index:10;
+  background:rgba(3,5,10,0.85);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.04);
+  padding:0 20px;overflow-x:auto;
+}
+nav ul{list-style:none;display:flex;gap:0;max-width:900px;margin:0 auto;justify-content:center}
+nav li{flex-shrink:0}
+nav a{
+  display:block;padding:14px 20px;font-size:13px;font-weight:500;
+  color:#64748b;text-decoration:none;transition:color .2s;white-space:nowrap;
+  border-bottom:2px solid transparent;
+}
+nav a:hover{color:#00d4ff}
+nav a.active{color:#00d4ff;border-bottom-color:#00d4ff}
+/* Main */
+main{position:relative;z-index:1;max-width:860px;margin:0 auto;padding:40px 24px 100px}
+/* App section */
+.app-section{
+  margin-bottom:60px;
+  background:linear-gradient(135deg,rgba(0,212,255,0.03) 0%,rgba(123,97,255,0.03) 100%);
+  border:1px solid rgba(255,255,255,0.04);border-radius:16px;padding:32px;
+}
+.app-section h2{
+  font-size:20px;font-weight:600;color:#e2e8f0;margin-bottom:4px;
+  display:flex;align-items:center;gap:10px;
+}
+.app-section .app-icon{font-size:24px}
+.app-section .app-sub{font-size:12px;color:#64748b;margin-bottom:20px}
+.app-section h3{
+  font-size:15px;font-weight:600;color:#00d4ff;margin:28px 0 12px;
+  letter-spacing:0.3px;
+}
+.app-section h4{font-size:13px;font-weight:600;color:#e2e8f0;margin:20px 0 8px}
+.app-section p,.app-section li{font-size:14px;color:#94a3b8}
+.app-section ul{padding-left:20px;list-style:disc;margin:8px 0}
+.app-section li{margin:4px 0}
+.app-section strong{color:#c8d0e0;font-weight:600}
+.app-section a{color:#00d4ff;text-decoration:none;border-bottom:1px solid rgba(0,212,255,0.2)}
+.app-section a:hover{border-bottom-color:#00d4ff}
+.app-section .highlight{
+  background:rgba(255,200,0,0.06);border-left:3px solid #ffcc00;
+  padding:12px 16px;border-radius:0 8px 8px 0;margin:16px 0;font-size:13px;
+}
+.app-section .highlight strong{color:#ffcc00}
+.app-section .pill{
+  display:inline-block;padding:2px 10px;border-radius:10px;
+  font-size:11px;font-weight:600;letter-spacing:0.5px;margin-right:4px;
+}
+.pill-required{background:rgba(0,212,255,0.12);color:#00d4ff}
+.pill-optional{background:rgba(123,97,255,0.12);color:#a78bfa}
+.pill-yes{background:rgba(34,197,94,0.12);color:#22c55e}
+.pill-no{background:rgba(239,68,68,0.12);color:#ef4444}
+/* Table */
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px}
+th,td{
+  text-align:left;padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.04);
+}
+th{color:#64748b;font-weight:600;text-transform:uppercase;font-size:11px;letter-spacing:1px}
+td{color:#94a3b8}
+/* Footer */
+footer{
+  position:relative;z-index:1;text-align:center;padding:40px 20px;
+  border-top:1px solid rgba(255,255,255,0.04);font-size:13px;color:#475569;
+}
+footer a{color:#64748b;text-decoration:none}
+footer a:hover{color:#00d4ff}
+/* Last updated */
+.updated{font-size:12px;color:#475569;margin-top:20px;text-align:center}
+/* Responsive */
+@media(max-width:600px){
+  header{padding:48px 16px 36px}
+  .app-section{padding:20px}
+  nav a{padding:12px 14px;font-size:12px}
+  table{font-size:12px}
+  th,td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+<canvas id="stars-canvas"></canvas>
+
+<header>
+  <p>Karagato Studios</p>
+  <h1>Privacy &amp; Terms</h1>
+  <div class="badge">Last updated: June 2026</div>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="#orbitaleye" class="active">OrbitalEye</a></li>
+    <li><a href="#stellarmap">StellarMap Pro</a></li>
+    <li><a href="#terms">Terms of Use</a></li>
+    <li><a href="#licenses">Licenses</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<!-- ========= ORBITALEYE ========= -->
+<section id="orbitaleye" class="app-section">
+  <h2><span class="app-icon">🛰️</span> OrbitalEye — Privacy Policy</h2>
+  <p class="app-sub">Real-time satellite tracking &amp; space situational awareness</p>
+
+  <p><strong>Effective date:</strong> June 2026<br>
+  <strong>Contact:</strong> <a href="mailto:karagatostudios@gmail.com">karagatostudios@gmail.com</a></p>
+
+  <h3>1. What OrbitalEye Does</h3>
+  <p>OrbitalEye is a satellite tracking app that calculates and displays the real-time position of thousands of objects in Earth orbit using publicly available Two-Line Element (TLE) data. It offers an interactive 3D globe, an augmented reality sky view, pass predictions, and conjunction alerts.</p>
+
+  <h3>2. Permissions We Use</h3>
+  <table>
+    <tr><th>Permission</th><th>Required</th><th>Purpose</th></tr>
+    <tr><td><strong>Location (GPS / Coarse)</strong></td><td><span class="pill pill-optional">Optional</span></td><td>Calculates which satellites are visible from your position, predicts passes over your area, and enables the AR Sky mode. Never shared with third parties. You can use the app with an approximate default location.</td></tr>
+    <tr><td><strong>Camera</strong></td><td><span class="pill pill-optional">Optional</span></td><td>Used exclusively in AR Sky mode to overlay satellite positions on the live camera feed. No images or video are captured, stored, or uploaded.</td></tr>
+    <tr><td><strong>Internet</strong></td><td><span class="pill pill-required">Required</span></td><td>Downloads orbital elements (TLE) from public sources such as CelesTrak and USSPACECOM. No account or registration is needed.</td></tr>
+    <tr><td><strong>Storage</strong></td><td><span class="pill pill-required">Required</span></td><td>Caches TLE data, your favorites, pass alerts, and preferences locally on your device. No data is sent to external servers.</td></tr>
+  </table>
+
+  <h3>3. Data We Collect</h3>
+  <p><strong>What we collect:</strong></p>
+  <ul>
+    <li><strong>Location data</strong> — only if you grant the location permission. Used solely for satellite pass calculations and AR positioning. Not stored on our servers.</li>
+    <li><strong>Advertising ID</strong> — if AdMob ads are shown (see section 4).</li>
+  </ul>
+  <p><strong>What we DO NOT collect:</strong></p>
+  <ul>
+    <li>✗ Name, email address, or account credentials</li>
+    <li>✗ Phone number, contacts, or health data</li>
+    <li>✗ Photos, videos, or microphone audio</li>
+    <li>✗ Browsing history or personal identifiers beyond the advertising ID</li>
+  </ul>
+
+  <h3>4. Advertising (AdMob)</h3>
+  <p>This app may display advertisements served by <strong>Google AdMob</strong>. AdMob may collect and use the following data to serve personalized or contextual ads:</p>
+  <ul>
+    <li>Device advertising ID (e.g. Google Advertising ID on Android)</li>
+    <li>IP address</li>
+    <li>Device type and operating system version</li>
+    <li>General location (city-level, not precise GPS)</li>
+    <li>Ad interactions (clicks, views)</li>
+  </ul>
+  <p>If you prefer not to receive personalized ads, you can opt out of ad personalization in your device settings (Android: Settings → Privacy → Ads → Opt out of Ads Personalization).</p>
+  <p>For more information on how Google processes advertising data, see <a href="https://policies.google.com/privacy" target="_blank">Google's Privacy Policy</a>.</p>
+
+  <h3>5. Third-Party Services</h3>
+  <p>OrbitalEye integrates the following third-party services:</p>
+  <ul>
+    <li><strong>Google AdMob</strong> — advertising (see section 4)</li>
+    <li><strong>CelesTrak / USSPACECOM</strong> — public TLE orbital data (no user data sent)</li>
+    <li><strong>Google Play Services Location</strong> — optional GPS location</li>
+    <li><strong>Android CameraX</strong> — optional AR camera stream (local only)</li>
+  </ul>
+
+  <h3>6. Data Storage &amp; Retention</h3>
+  <p>All data (TLE cache, favorites, pass alerts, preferences) is stored <strong>locally on your device</strong>. Data is retained until you clear the app's data or uninstall it. The TLE cache is updated periodically (typically every 1–3 hours).</p>
+  <p>We do not operate external servers that store personal data. Your information stays on your device.</p>
+
+  <h3>7. Legal Basis (EU/EEA Users)</h3>
+  <p>We process your data based on:</p>
+  <ul>
+    <li><strong>Consent</strong> — you grant location and camera permissions, and accept this notice</li>
+    <li><strong>Legitimate interest</strong> — providing core satellite tracking functionality</li>
+  </ul>
+
+  <h3>8. Your Rights</h3>
+  <p>Depending on your jurisdiction, you may have the right to:</p>
+  <ul>
+    <li>Revoke permissions at any time (Android Settings → Apps → OrbitalEye → Permissions)</li>
+    <li>Delete all app data (Android Settings → Apps → OrbitalEye → Storage → Clear data)</li>
+    <li>Uninstall the app</li>
+    <li>Opt out of ad personalization (device settings)</li>
+  </ul>
+  <p>For questions or data requests: <a href="mailto:karagatostudios@gmail.com">karagatostudios@gmail.com</a></p>
+
+  <h3>9. Children</h3>
+  <p>OrbitalEye is not directed at children under 13. We do not knowingly collect personal data from children.</p>
+
+  <h3>10. Changes</h3>
+  <p>We may update this policy from time to time. Changes will be posted in the app and, if material, we may request new acceptance.</p>
+</section>
+
+<!-- ========= STELLARMAP PRO ========= -->
+<section id="stellarmap" class="app-section">
+  <h2><span class="app-icon">🌌</span> StellarMap Pro — Privacy Policy</h2>
+  <p class="app-sub">Interactive star atlas &amp; astronomy companion</p>
+
+  <p><strong>Effective date:</strong> June 2026<br>
+  <strong>Contact:</strong> <a href="mailto:karagatostudios@gmail.com">karagatostudios@gmail.com</a></p>
+
+  <h3>1. What StellarMap Pro Does</h3>
+  <p>StellarMap Pro is an astronomy app that displays an interactive star chart, identifies celestial objects (stars, planets, constellations, deep-sky objects), provides ephemeris data, and offers an augmented reality sky view.</p>
+
+  <h3>2. Permissions We Use</h3>
+  <table>
+    <tr><th>Permission</th><th>Required</th><th>Purpose</th></tr>
+    <tr><td><strong>Location (GPS / Coarse)</strong></td><td><span class="pill pill-optional">Optional</span></td><td>Calculates the visible sky from your position for accurate star maps and AR alignment. Not shared with third parties. You can browse the star chart with a default location.</td></tr>
+    <tr><td><strong>Camera</strong></td><td><span class="pill pill-optional">Optional</span></td><td>Used in AR Sky mode to overlay constellations and objects on the live camera feed. No images or video are captured, stored, or uploaded.</td></tr>
+    <tr><td><strong>Internet</strong></td><td><span class="pill pill-required">Required</span></td><td>Downloads star catalogs, ephemeris updates, and astronomical data. No account or registration is needed.</td></tr>
+    <tr><td><strong>Storage</strong></td><td><span class="pill pill-required">Required</span></td><td>Caches star catalogs, observation logs, favorites, and app preferences locally on your device.</td></tr>
+  </table>
+
+  <h3>3. Data We Collect</h3>
+  <p><strong>What we collect:</strong></p>
+  <ul>
+    <li><strong>Location data</strong> — only if you grant the location permission. Used solely for sky chart positioning and AR alignment. Not stored on our servers.</li>
+    <li><strong>Advertising ID</strong> — if AdMob ads are shown (see section 4).</li>
+  </ul>
+  <p><strong>What we DO NOT collect:</strong></p>
+  <ul>
+    <li>✗ Name, email address, or account credentials</li>
+    <li>✗ Phone number, contacts, or health data</li>
+    <li>✗ Photos, videos, or microphone audio</li>
+    <li>✗ Browsing history or personal identifiers beyond the advertising ID</li>
+    <li>✗ Observation data or personal notes (stored only on your device)</li>
+  </ul>
+
+  <h3>4. Advertising (AdMob)</h3>
+  <p>This app may display advertisements served by <strong>Google AdMob</strong>. AdMob may collect and use the following data to serve personalized or contextual ads:</p>
+  <ul>
+    <li>Device advertising ID (Google Advertising ID on Android)</li>
+    <li>IP address</li>
+    <li>Device type and operating system version</li>
+    <li>General location (city-level, not precise GPS)</li>
+    <li>Ad interactions (clicks, views)</li>
+  </ul>
+  <p>You can opt out of ad personalization at any time in your device settings (Android: Settings → Privacy → Ads → Opt out of Ads Personalization).</p>
+  <p>See <a href="https://policies.google.com/privacy" target="_blank">Google's Privacy Policy</a> for details on how Google processes advertising data.</p>
+
+  <h3>5. Third-Party Services</h3>
+  <ul>
+    <li><strong>Google AdMob</strong> — advertising</li>
+    <li><strong>Google Play Services Location</strong> — optional GPS location</li>
+    <li><strong>Android CameraX</strong> — optional AR camera stream (local only)</li>
+    <li><strong>Star/planet catalog data</strong> — from public astronomical databases (no user data sent)</li>
+  </ul>
+
+  <h3>6. Data Storage &amp; Retention</h3>
+  <p>All data (star catalogs, favorites, observation logs, preferences) is stored <strong>locally on your device</strong>. Data is retained until you clear the app's data or uninstall it. We do not operate servers that store personal data.</p>
+
+  <h3>7. Legal Basis (EU/EEA Users)</h3>
+  <p>We process your data based on <strong>consent</strong> (permissions granted) and <strong>legitimate interest</strong> (providing core astronomy functionality).</p>
+
+  <h3>8. Your Rights</h3>
+  <ul>
+    <li>Revoke permissions at any time (Android Settings → Apps → StellarMap Pro → Permissions)</li>
+    <li>Delete all app data (Android Settings → Apps → StellarMap Pro → Storage → Clear data)</li>
+    <li>Uninstall the app</li>
+    <li>Opt out of ad personalization</li>
+  </ul>
+
+  <h3>9. Children</h3>
+  <p>StellarMap Pro is not directed at children under 13.</p>
+
+  <h3>10. Changes</h3>
+  <p>We may update this policy as needed. Changes will be posted here and, if material, we may request new acceptance.</p>
+</section>
+
+<!-- ========= TERMS OF USE ========= -->
+<section id="terms" class="app-section">
+  <h2><span class="app-icon">📜</span> Terms of Use</h2>
+  <p class="app-sub">Applies to both OrbitalEye and StellarMap Pro</p>
+
+  <p><strong>Contact:</strong> <a href="mailto:karagatostudios@gmail.com">karagatostudios@gmail.com</a></p>
+
+  <h3>1. Acceptance</h3>
+  <p>By downloading, installing, or using any Karagato Studios application, you agree to these terms. If you do not agree, do not use the app.</p>
+
+  <h3>2. Nature of the Service</h3>
+  <p>The data provided by our apps (satellite positions, star charts, pass predictions, ephemeris, etc.) is <strong>approximate and for informational purposes only</strong>. It may contain errors or delays and does not substitute official data from space agencies, observatories, or safety authorities.</p>
+
+  <h3>3. Permitted Use</h3>
+  <ul>
+    <li>Personal and educational use is permitted.</li>
+    <li>Commercial redistribution of app data or content without authorization is not allowed.</li>
+    <li>You may not reverse-engineer, modify, or create derivative works of the apps without explicit permission.</li>
+  </ul>
+
+  <h3>4. AR and Safety</h3>
+  <p>In augmented reality mode, <strong>stay aware of your surroundings</strong>. Do not use the app while driving, operating machinery, or in situations that require full attention. Karagato Studios is not responsible for accidents or injuries resulting from improper use of AR features.</p>
+
+  <h3>5. Advertising</h3>
+  <p>Our apps may display third-party advertisements via Google AdMob. We are not responsible for the content of third-party ads.</p>
+
+  <h3>6. Intellectual Property</h3>
+  <p>All app code, design, graphics, and branding are the property of <strong>Karagato Studios</strong>. Third-party libraries and assets retain their respective licenses (see Licenses section).</p>
+
+  <h3>7. Limitation of Liability</h3>
+  <p>To the extent permitted by applicable law, Karagato Studios shall not be liable for any direct, indirect, incidental, or consequential damages arising from the use or inability to use the apps.</p>
+
+  <h3>8. Applicable Law</h3>
+  <p>These terms are governed by the applicable laws of your country of residence, without prejudice to mandatory consumer protection rights.</p>
+
+  <h3>9. Contact</h3>
+  <p>For questions, bug reports, or legal inquiries: <a href="mailto:karagatostudios@gmail.com">karagatostudios@gmail.com</a></p>
+</section>
+
+<!-- ========= LICENSES ========= -->
+<section id="licenses" class="app-section">
+  <h2><span class="app-icon">📄</span> Third-Party Licenses</h2>
+  <p class="app-sub">Open source components used by our apps</p>
+
+  <table>
+    <tr><th>Library</th><th>License</th></tr>
+    <tr><td><strong>Three.js</strong> (3D rendering)</td><td>MIT License</td></tr>
+    <tr><td><strong>OrbitControls</strong> (three.js examples)</td><td>MIT License</td></tr>
+    <tr><td><strong>Android Jetpack</strong> (Compose, Navigation, Lifecycle)</td><td>Apache 2.0</td></tr>
+    <tr><td><strong>CameraX</strong> (AR camera feed)</td><td>Apache 2.0</td></tr>
+    <tr><td><strong>Google Play Services Location</strong></td><td>Apache 2.0 / Google Terms</td></tr>
+    <tr><td><strong>Google AdMob</strong></td><td>Google AdMob Terms</td></tr>
+    <tr><td><strong>Kotlin / Coroutines</strong></td><td>Apache 2.0</td></tr>
+    <tr><td><strong>OkHttp</strong></td><td>Apache 2.0</td></tr>
+    <tr><td><strong>WorkManager</strong></td><td>Apache 2.0</td></tr>
+    <tr><td><strong>NASA Visible Earth textures</strong> (Blue Marble)</td><td>NASA/GSFC usage policy</td></tr>
+    <tr><td><strong>CelesTrak / USSPACECOM TLE data</strong></td><td>Public orbital data</td></tr>
+  </table>
+
+  <p style="margin-top:16px;font-size:13px;color:#64748b">Source code for open source libraries is available in their respective official repositories. For attribution inquiries: <a href="mailto:karagatostudios@gmail.com">karagatostudios@gmail.com</a></p>
+</section>
+
+<p class="updated">Karagato Studios — <a href="mailto:karagatostudios@gmail.com">karagatostudios@gmail.com</a></p>
+
+</main>
+
+<footer>
+  <p>&copy; 2026 Karagato Studios. All rights reserved.</p>
+  <p style="margin-top:4px"><a href="mailto:karagatostudios@gmail.com">karagatostudios@gmail.com</a></p>
+</footer>
+
+<script>
+// Animated star field
+(function(){
+  var c = document.getElementById('stars-canvas');
+  var ctx = c.getContext('2d');
+  var stars = [];
+  var w, h;
+
+  function resize(){
+    w = window.innerWidth; h = window.innerHeight;
+    c.width = w; c.height = h;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  for (var i = 0; i < 300; i++){
+    stars.push({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      r: Math.random() * 1.6 + 0.3,
+      a: Math.random() * 0.8 + 0.2,
+      s: Math.random() * 0.005 + 0.002
+    });
+  }
+
+  function draw(){
+    ctx.clearRect(0, 0, w, h);
+    var t = Date.now() * 0.001;
+    for (var i = 0; i < stars.length; i++){
+      var st = stars[i];
+      var alpha = st.a + 0.3 * Math.sin(t * st.s * 10 + i);
+      ctx.beginPath();
+      ctx.arc(st.x, st.y, st.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(200, 220, 255, ' + alpha + ')';
+      ctx.fill();
+      // Twinkle
+      if (st.r > 1.2) {
+        ctx.beginPath();
+        ctx.arc(st.x, st.y, st.r * 2.5, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(200, 220, 255, ' + (alpha * 0.08) + ')';
+        ctx.fill();
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// Navigation highlight
+(function(){
+  var sections = document.querySelectorAll('.app-section');
+  var navLinks = document.querySelectorAll('nav a');
+  window.addEventListener('scroll', function(){
+    var current = '';
+    sections.forEach(function(s){
+      var top = s.getBoundingClientRect().top;
+      if (top < 200) current = s.id;
+    });
+    navLinks.forEach(function(a){
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  });
+})();
+</script>
+</body>
+</html>
